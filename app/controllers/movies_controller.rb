@@ -9,17 +9,16 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @release_header_class = ''
+    @all_ratings = Movie.get_all_ratings
+    @release_date_header_class = ''
     @title_header_class = ''
     unless params[:sort].nil?
+      @selected_ratings = Movie.get_all_ratings
       @movies = Movie.order(params[:sort])
-      if params[:sort] == 'title'
-        @title_header_class = 'hilite'
-      else
-        @release_header_class = 'hilite'
-      end
+      instance_eval %Q"@#{params[:sort]}_header_class = 'hilite'"
     else  
-      @movies = Movie.all
+      @selected_ratings = params[:ratings] ? params[:ratings].keys : Movie.get_all_ratings
+      @movies = Movie.where(rating: @selected_ratings)
     end 
   end
 
