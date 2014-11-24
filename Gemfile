@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 
-ruby '1.9.3'
 gem 'rails', '3.2.18'
 
 # Bundle edge Rails instead:
@@ -9,7 +8,6 @@ gem 'rails', '3.2.18'
 # for Heroku deployment - as described in Ap. A of ELLS book
 group :development, :test do
   gem 'sqlite3'
-  gem 'debugger'
 end
 
 
